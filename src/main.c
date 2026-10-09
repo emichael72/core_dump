@@ -13,11 +13,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int print_binary_tree(void);
+
 /**
  * @brief The short options, for both getopt_long passes in main(). A new option is added here once,
  *        next to its entry in main()'s options table.
  */
-static const char short_options[] = "phcs:j:";
+static const char short_options[] = "phcs:j:t";
 
 /**
  * @brief Print the command-line help.
@@ -33,6 +35,7 @@ static void usage(FILE *stream, const char *program)
             "  -b, --cubes    Print two random dice values (backgammon cubes)\n"
             "  -s SECONDS, --sine=SECONDS  Plot an animated sine wave for SECONDS seconds\n"
             "  -j NAME, --joke=NAME  Print a random joke about NAME\n"
+            "  -t, --tree          Generate, flip, and draw a binary tree\n"
             "  -h, --help     Show this help\n"
             "\nOptions may be combined, e.g. -pp or --pi --help.\n",
             program);
@@ -55,6 +58,7 @@ int main(int argc, char **argv)
         {"cubes", no_argument,       NULL, 'b'},
         {"sine",  required_argument, NULL, 's'},
         {"joke",  required_argument, NULL, 'j'},
+        {"tree",  no_argument,       NULL, 't'},
         {"help",  no_argument,       NULL, 'h'},
         {NULL,    0,                 NULL, 0  }
     };
@@ -110,6 +114,10 @@ int main(int argc, char **argv)
                 return EXIT_FAILURE;
             break;
         }
+        case 't':
+            if (print_binary_tree() != 0)
+                return EXIT_FAILURE;
+            break;
         case 'h':
             usage(stdout, argv[0]);
             break;
