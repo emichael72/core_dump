@@ -31,6 +31,8 @@ check: $(TARGET)
 	./$(TARGET) --help
 	./$(TARGET) -s 1
 	./$(TARGET) --sine=2
+	./$(TARGET) -j Eitan
+	./$(TARGET) --joke=Eitan
 	! ./$(TARGET) -x
 	! ./$(TARGET) --pi extra
 	! ./$(TARGET) -s abc
