@@ -13,13 +13,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * @brief Prints a binary tree.
+ * @return 0 on success.
+ */
 int print_binary_tree(void);
 
 /**
  * @brief The short options, for both getopt_long passes in main(). A new option is added here once,
  *        next to its entry in main()'s options table.
  */
-static const char short_options[] = "phcs:j:t";
+static const char short_options[] = "phcds:j:t";
 
 /**
  * @brief Print the command-line help.
@@ -32,7 +36,7 @@ static void usage(FILE *stream, const char *program)
             "Usage: %s [OPTIONS]\n"
             "  -p, --pi       Print pi to 15 decimal places\n"
             "  -c, --crc32    Print the CRC32 of the user's name as hex\n"
-            "  -b, --cubes    Print two random dice values (backgammon cubes)\n"
+            "  -d, --cubes    Print two random dice values (backgammon cubes)\n"
             "  -s SECONDS, --sine=SECONDS  Plot an animated sine wave for SECONDS seconds\n"
             "  -j NAME, --joke=NAME  Print a random joke about NAME\n"
             "  -t, --tree          Generate, flip, and draw a binary tree\n"
@@ -55,7 +59,7 @@ int main(int argc, char **argv)
     static const struct option options[] = {
         {"pi",    no_argument,       NULL, 'p'},
         {"crc32", no_argument,       NULL, 'c'},
-        {"cubes", no_argument,       NULL, 'b'},
+        {"cubes", no_argument,       NULL, 'd'},
         {"sine",  required_argument, NULL, 's'},
         {"joke",  required_argument, NULL, 'j'},
         {"tree",  no_argument,       NULL, 't'},
@@ -94,7 +98,7 @@ int main(int argc, char **argv)
             if (print_crc32() != 0)
                 return EXIT_FAILURE;
             break;
-        case 'b':
+        case 'd':
             if (print_cubes() != 0)
                 return EXIT_FAILURE;
             break;
